@@ -180,20 +180,42 @@ session.close()</div>
             </div>
         </section>
 
+        <div class="cga-widget" id="my-guide">
     
-    <script>
+            <!-- Add your variables -->
+            <div class="cga-variable">
+                <label>Name:</label>
+                <input type="text" class="cga-var-NAME" value="James">
+            </div>
+            <div class="cga-variable">
+                <label>Surname:</label>
+                <input type="text" class="cga-var-SURNAME" value="Bond">
+            </div>
+        
+            <!-- Add your commands or text with placeholders -->
+            A single line of text that can be copied:
+            <div class="cga-command">The name's {SURNAME}. {NAME} {SURNAME}.</div>
+        
+            Lines of text that could be some output, or longer code snippets..
+            <div class="cga-text">#!/usr/bin/python3
+name = "{NAME}"
+surname = "{SURNAME}"
 
-        // Initialize widgets and debug
+print(f"The name's {surname}. {name} {surname}")</div>
+        
+            Output:
+            <div class="cga-text">The name's {SURNAME}. {NAME} {SURNAME}</div>
+        </div>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing widgets...');
             
-            // Initialize widgets
             widget1 = CommandGuideAmplifiedWidget.init('docker-guide');
             widget1 = CommandGuideAmplifiedWidget.init('api-guide');
             widget1 = CommandGuideAmplifiedWidget.init('python-guide');
+            widget1 = CommandGuideAmplifiedWidget.init('my-guide');
             
         });
-        
     </script>
 </body>
 </html>
