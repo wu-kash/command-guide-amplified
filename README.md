@@ -5,14 +5,14 @@ This folder contains the wrapper function approach for creating reusable guide w
 ## Files
 
 - `index.html` - Usage example
-- `guide-widget-wrapper.js` - The main wrapper function
+- `copy-guide-widget.js` - The main wrapper function
 - `README.md` - This documentation
 
 ## Quick Start
 
 ### 1. Include the wrapper script
 ```html
-<script src="guide-widget-wrapper.js"></script>
+<script src="copy-guide-widget.js"></script>
 ```
 
 ### 2. Create your HTML structure

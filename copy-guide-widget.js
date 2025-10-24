@@ -20,16 +20,13 @@ function initGuideWidget(containerId) {
     
     // Get the original template text
     const originalTemplate = textElement.textContent || textElement.getAttribute('data-template') || '';
-    console.log('Original template:', originalTemplate);
     
     // Find all variable inputs
     const variableInputs = container.querySelectorAll('input[id*="guideVar-"], input[id*="var-"], .guide-variable input');
-    console.log('Found variable inputs:', variableInputs.length);
     
     // Function to update the text with current variable values
     function updateText() {
         let text = originalTemplate;
-        console.log('Updating text with template:', text);
         
         // Replace all variables with current input values
         variableInputs.forEach(input => {
@@ -47,11 +44,9 @@ function initGuideWidget(containerId) {
             }
             
             const value = input.value || `{${variableName}}`;
-            console.log(`Replacing {${variableName}} with ${value}`);
             text = text.replace(new RegExp(`\\{${variableName}\\}`, 'g'), value);
         });
         
-        console.log('Final text:', text);
         textElement.textContent = text;
         
         // Update one-liner commands
@@ -143,14 +138,12 @@ function initGuideWidget(containerId) {
     
     // Add event listeners to all variable inputs
     variableInputs.forEach((input, index) => {
-        console.log(`Adding event listener to input ${index}:`, input.id, input.value);
         input.addEventListener('input', updateText);
         input.addEventListener('change', updateText);
         input.addEventListener('keyup', updateText);
     });
     
     // Initial update
-    console.log('Performing initial update...');
     updateText();
     
     // Add click handlers for one-liner commands
