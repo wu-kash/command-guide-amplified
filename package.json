@@ -1,6 +1,6 @@
 {
   "name": "copy-guide-widget",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, reusable guide widget for creating interactive templates with variable substitution",
   "main": "dist/copy-guide-widget.js",
   "module": "dist/copy-guide-widget.esm.js",

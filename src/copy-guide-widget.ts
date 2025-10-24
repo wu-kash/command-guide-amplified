@@ -31,7 +31,11 @@ export function initGuideWidget(containerId: string): GuideWidgetInstance | null
   }
   
   // Find the text element containing the template
-  const textElement = container.querySelector('.guide-text, #guideText, [data-template]');
+  // Priority: #guideText, [data-template], then .guide-text (but not inside .guide-oneliners)
+  let textElement = container.querySelector('#guideText') || 
+                    container.querySelector('[data-template]') ||
+                    container.querySelector('.guide-text:not(.guide-oneliners .guide-text)') ||
+                    container.querySelector('.guide-text');
   if (!textElement) {
     console.error('Template text element not found in container:', containerId);
     return null;
