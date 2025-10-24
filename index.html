@@ -41,7 +41,15 @@ Environment: {ENV}
                 <div class="oneline-command" data-template="docker run -p {PORT}:{PORT} {IMAGE_NAME}">docker run -p {PORT}:{PORT} {IMAGE_NAME}</div>
                 <div class="oneline-command" data-template="docker run -p {PORT}:{PORT} -e ENV={ENV} {IMAGE_NAME}">docker run -p {PORT}:{PORT} -e ENV={ENV} {IMAGE_NAME}</div>
             </div>
+            <div class="guide-text">
+                docker build -t {IMAGE_NAME} .
+                docker run -p {PORT}:{PORT} {IMAGE_NAME}
+                
+                Environment: {ENV}
+                            </div>
         </div>
+
+
         
         <div class="guide-widget" id="test-guide-2">
             <h3>Test Widget 2</h3>

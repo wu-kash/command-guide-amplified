@@ -31,48 +31,90 @@ export function initGuideWidget(containerId: string): GuideWidgetInstance | null
   }
   
   // Find the text element containing the template
-  // Priority: #guideText, [data-template], then .guide-text (but not inside .guide-oneliners)
-  let textElement = container.querySelector('#guideText') || 
-                    container.querySelector('[data-template]') ||
-                    container.querySelector('.guide-text:not(.guide-oneliners .guide-text)') ||
-                    container.querySelector('.guide-text');
+  // Use a more specific approach to find the main template
+  let textElement = container.querySelector('#guideText');
+  
+  // If no specific ID, find the main .guide-text element
+  if (!textElement) {
+    // Get all .guide-text elements
+    const allGuideTexts = container.querySelectorAll('.guide-text');
+    
+    // Find the one that's a direct child of the container (not nested)
+    for (let i = 0; i < allGuideTexts.length; i++) {
+      const element = allGuideTexts[i];
+      const isDirectChild = element.parentElement === container;
+      const isInsideOneliners = element.closest('.guide-oneliners');
+      
+      // Prefer direct children that are not inside oneliners
+      if (isDirectChild && !isInsideOneliners) {
+        textElement = element;
+        break;
+      }
+    }
+    
+    // If no direct child found, use the first one that's not inside oneliners
+    if (!textElement) {
+      for (let i = 0; i < allGuideTexts.length; i++) {
+        const element = allGuideTexts[i];
+        const isInsideOneliners = element.closest('.guide-oneliners');
+        if (!isInsideOneliners) {
+          textElement = element;
+          break;
+        }
+      }
+    }
+    
+    // Final fallback
+    if (!textElement && allGuideTexts.length > 0) {
+      textElement = allGuideTexts[0];
+    }
+  }
   if (!textElement) {
     console.error('Template text element not found in container:', containerId);
     return null;
   }
   
-  // Get the original template text
-  const originalTemplate = textElement.textContent || textElement.getAttribute('data-template') || '';
+  // Get all template text elements (not just the first one)
+  const allTemplateElements = container.querySelectorAll('.guide-text:not(.guide-oneliners .guide-text)');
+  const originalTemplates: string[] = [];
+  
+  allTemplateElements.forEach(element => {
+    originalTemplates.push(element.textContent || element.getAttribute('data-template') || '');
+  });
+  
+  // Keep the first one for backward compatibility
+  const originalTemplate = originalTemplates[0] || '';
   
   // Find all variable inputs
   const variableInputs = container.querySelectorAll('input[id*="guideVar-"], input[id*="var-"], .guide-variable input') as NodeListOf<HTMLInputElement>;
   
   // Function to update the text with current variable values
   function updateText(): void {
-    let text = originalTemplate;
-    
-    // Replace all variables with current input values
-    variableInputs.forEach(input => {
-      // Extract variable name from input ID or data attribute
-      let variableName: string;
-      if (input.id.includes('guideVar-')) {
-        variableName = input.id.replace('guideVar-', '');
-      } else if (input.id.includes('var-')) {
-        variableName = input.id.replace('var-', '');
-      } else if (input.dataset.variable) {
-        variableName = input.dataset.variable;
-      } else {
-        // Try to extract from name attribute
-        variableName = input.name || input.placeholder || 'UNKNOWN';
-      }
+    // Update all template elements
+    allTemplateElements.forEach((element, index) => {
+      let text = originalTemplates[index] || '';
       
-      const value = input.value || `{${variableName}}`;
-      text = text.replace(new RegExp(`\\{${variableName}\\}`, 'g'), value);
+      // Replace all variables with current input values
+      variableInputs.forEach(input => {
+        // Extract variable name from input ID or data attribute
+        let variableName: string;
+        if (input.id.includes('guideVar-')) {
+          variableName = input.id.replace('guideVar-', '');
+        } else if (input.id.includes('var-')) {
+          variableName = input.id.replace('var-', '');
+        } else if (input.dataset.variable) {
+          variableName = input.dataset.variable;
+        } else {
+          // Try to extract from name attribute
+          variableName = input.name || input.placeholder || 'UNKNOWN';
+        }
+        
+        const value = input.value || `{${variableName}}`;
+        text = text.replace(new RegExp(`\\{${variableName}\\}`, 'g'), value);
+      });
+      
+      element.textContent = text;
     });
-    
-    if (textElement) {
-      textElement.textContent = text;
-    }
     
     // Update one-liner commands
     updateOneLiners();
