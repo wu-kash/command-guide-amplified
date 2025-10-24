@@ -9,7 +9,7 @@ export default [
       file: 'dist/command-guide-amplified.js',
       format: 'umd',
       name: 'CommandGuideAmplifiedWidget',
-      sourcemap: true,
+      sourcemap: 'inline', // Use inline source maps for CDN compatibility
       exports: 'named'
     },
     plugins: [
@@ -25,7 +25,7 @@ export default [
       file: 'dist/command-guide-amplified.min.js',
       format: 'umd',
       name: 'CommandGuideAmplifiedWidget',
-      sourcemap: true,
+      sourcemap: false, // Disable source maps for minified version
       exports: 'named'
     },
     plugins: [
@@ -41,7 +41,7 @@ export default [
     output: {
       file: 'dist/command-guide-amplified.esm.js',
       format: 'es',
-      sourcemap: true
+      sourcemap: 'inline' // Use inline source maps for CDN compatibility
     },
     plugins: [
       typescript({
@@ -55,7 +55,7 @@ export default [
     output: {
       file: 'dist/command-guide-amplified.cjs.js',
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: 'inline', // Use inline source maps for CDN compatibility
       exports: 'named'
     },
     plugins: [
