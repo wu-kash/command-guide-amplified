@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Command Guide Widget - Example</title>
-    <script src="dist/command-guide-amplified.js"></script>
+    <!-- <script src="dist/command-guide-amplified.js"></script> -->
+    <script src="https://unpkg.com/command-guide-amplified/dist/command-guide-amplified.min.js"></script>
     <link rel="stylesheet" href="styles.css">
    
 </head>
@@ -210,10 +211,10 @@ print(f"The name's {surname}. {name} {surname}")</div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            widget1 = CommandGuideAmplifiedWidget.init('docker-guide');
-            widget1 = CommandGuideAmplifiedWidget.init('api-guide');
-            widget1 = CommandGuideAmplifiedWidget.init('python-guide');
-            widget1 = CommandGuideAmplifiedWidget.init('my-guide');
+            CommandGuideAmplifiedWidget.init('docker-guide');
+            CommandGuideAmplifiedWidget.init('api-guide');
+            CommandGuideAmplifiedWidget.init('python-guide');
+            CommandGuideAmplifiedWidget.init('my-guide');
             
         });
     </script>

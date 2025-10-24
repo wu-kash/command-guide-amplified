@@ -84,3 +84,5 @@ Sections automatically initialize if they contain data-cga-widget attribute:
 
 ### 4. Result
 ![image description](img/example.png)
+
+See `index.html` for more examples.
