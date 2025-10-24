@@ -1,6 +1,6 @@
 {
   "name": "command-guide-amplified",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A lightweight, reusable widget for creating interactive templates with variable substitution",
   "main": "dist/command-guide-amplified.js",
   "module": "dist/command-guide-amplified.esm.js",
@@ -35,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wu-kash/code-guide-amplified.git"
+    "url": "https://github.com/wu-kash/command-guide-amplified.git"
   },
   "bugs": {
-    "url": "https://github.com/wu-kash/code-guide-amplified/issues"
+    "url": "https://github.com/wu-kash/command-guide-amplified/issues"
   },
-  "homepage": "https://github.com/wu-kash/code-guide-amplified#readme"
+  "homepage": "https://github.com/wu-kash/command-guide-amplified#readme"
 }
