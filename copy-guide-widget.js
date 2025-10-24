@@ -125,7 +125,7 @@ function initGuideWidget(containerId) {
     // Show copy feedback
     function showCopyFeedback(element) {
         const originalText = element.textContent;
-        element.textContent = '✅ Copied!';
+        element.textContent = 'Copied!';
         element.style.background = '#d4edda';
         element.style.borderColor = '#28a745';
         

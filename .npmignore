@@ -1,0 +1,27 @@
+# Source files
+src/
+*.ts
+tsconfig.json
+rollup.config.js
+
+# Development files
+example.html
+index.html
+styles.css
+copy-guide-widget.js
+guide-widget-wrapper.js
+
+# Build tools
+.gitignore
+.npmignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

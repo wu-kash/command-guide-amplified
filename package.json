@@ -1,0 +1,44 @@
+{
+  "name": "copy-guide-widget",
+  "version": "1.0.0",
+  "description": "A lightweight, reusable guide widget for creating interactive templates with variable substitution",
+  "main": "dist/copy-guide-widget.js",
+  "module": "dist/copy-guide-widget.esm.js",
+  "types": "dist/copy-guide-widget.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "guide",
+    "widget",
+    "template",
+    "variable",
+    "substitution",
+    "interactive",
+    "documentation",
+    "tutorial"
+  ],
+  "author": "Lukasz Ziolkowski",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.9.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wu-kash/code-guide-amplified.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wu-kash/code-guide-amplified/issues"
+  },
+  "homepage": "https://github.com/wu-kash/code-guide-amplified#readme"
+}

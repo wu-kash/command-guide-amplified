@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Widget - Example</title>
+    <script src="dist/copy-guide-widget.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .guide-widget {
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #f8f9fa;
+        }
+        
+        .guide-widget h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .guide-variables {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .guide-variable {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .guide-variable label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+        
+        .guide-variable input {
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .guide-variable input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        
+        .guide-text {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            margin: 15px 0;
+            border: 1px solid #4a5568;
+        }
+        
+        .guide-oneliners {
+            margin-top: 15px;
+        }
+        
+        .guide-oneliners h4 {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        
+        .oneline-command {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin: 5px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        
+        .oneline-command:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .oneline-command:active {
+            transform: translateY(1px);
+        }
+        
+        .actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid #007bff;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            border-color: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+            border-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guide Widget - Example Usage</h1>
+    <p>This example demonstrates the Guide Widget package with multiple interactive templates.</p>
+    
+    <!-- Docker Guide Widget -->
+    <div class="guide-widget" id="docker-guide">
+        <h3>🐳 Docker Setup Guide</h3>
+        <div class="guide-variables">
+            <div class="guide-variable">
+                <label for="guideVar-IMAGE_NAME">Image Name:</label>
+                <input type="text" id="guideVar-IMAGE_NAME" value="my-app">
+            </div>
+            <div class="guide-variable">
+                <label for="guideVar-PORT">Port:</label>
+                <input type="text" id="guideVar-PORT" value="3000">
+            </div>
+            <div class="guide-variable">
+                <label for="guideVar-ENV">Environment:</label>
+                <input type="text" id="guideVar-ENV" value="production">
+            </div>
+        </div>
+        
+        <div class="guide-text">
+# Docker Setup for {IMAGE_NAME}
+
+## Build the image
+docker build -t {IMAGE_NAME} .
+
+## Run the container
+docker run -p {PORT}:{PORT} {IMAGE_NAME}
+
+## Run with environment variables
+docker run -p {PORT}:{PORT} -e NODE_ENV={ENV} {IMAGE_NAME}
+
+## Stop and remove
+docker stop {IMAGE_NAME}
+docker rm {IMAGE_NAME}
+        </div>
+        
+        <div class="guide-oneliners">
+            <h4>Quick Commands:</h4>
+            <div class="oneline-command" data-template="docker build -t {IMAGE_NAME} .">docker build -t {IMAGE_NAME} .</div>
+            <div class="oneline-command" data-template="docker run -p {PORT}:{PORT} {IMAGE_NAME}">docker run -p {PORT}:{PORT} {IMAGE_NAME}</div>
+            <div class="oneline-command" data-template="docker run -p {PORT}:{PORT} -e NODE_ENV={ENV} {IMAGE_NAME}">docker run -p {PORT}:{PORT} -e NODE_ENV={ENV} {IMAGE_NAME}</div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn" onclick="copyDockerGuide()">📋 Copy Guide</button>
+            <button class="btn btn-secondary" onclick="downloadDockerGuide()">💾 Download</button>
+        </div>
+    </div>
+    
+    <!-- API Guide Widget -->
+    <div class="guide-widget" id="api-guide">
+        <h3>🚀 API Integration Guide</h3>
+        <div class="guide-variables">
+            <div class="guide-variable">
+                <label for="guideVar-API_URL">API URL:</label>
+                <input type="text" id="guideVar-API_URL" value="https://api.example.com">
+            </div>
+            <div class="guide-variable">
+                <label for="guideVar-API_KEY">API Key:</label>
+                <input type="text" id="guideVar-API_KEY" value="your-api-key-here">
+            </div>
+            <div class="guide-variable">
+                <label for="guideVar-VERSION">API Version:</label>
+                <input type="text" id="guideVar-VERSION" value="v1">
+            </div>
+        </div>
+        
+        <div class="guide-text">
+# API Integration Guide
+
+## Authentication
+curl -H "Authorization: Bearer {API_KEY}" {API_URL}/{VERSION}/auth
+
+## Get Data
+curl -H "Authorization: Bearer {API_KEY}" {API_URL}/{VERSION}/data
+
+## Post Data
+curl -X POST -H "Authorization: Bearer {API_KEY}" -H "Content-Type: application/json" -d '{"key":"value"}' {API_URL}/{VERSION}/data
+        </div>
+        
+        <div class="guide-oneliners">
+            <h4>Quick Commands:</h4>
+            <div class="oneline-command" data-template="curl -H 'Authorization: Bearer {API_KEY}' {API_URL}/{VERSION}/auth">curl -H "Authorization: Bearer {API_KEY}" {API_URL}/{VERSION}/auth</div>
+            <div class="oneline-command" data-template="curl -H 'Authorization: Bearer {API_KEY}' {API_URL}/{VERSION}/data">curl -H "Authorization: Bearer {API_KEY}" {API_URL}/{VERSION}/data</div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn" onclick="copyApiGuide()">📋 Copy Guide</button>
+            <button class="btn btn-secondary" onclick="downloadApiGuide()">💾 Download</button>
+        </div>
+    </div>
+    
+    <!-- Auto-initialized Widget -->
+    <div class="guide-widget" data-guide-widget id="auto-guide">
+        <h3>⚡ Auto-initialized Widget</h3>
+        <div class="guide-variables">
+            <div class="guide-variable">
+                <label for="guideVar-COMMAND">Command:</label>
+                <input type="text" id="guideVar-COMMAND" value="npm install">
+            </div>
+            <div class="guide-variable">
+                <label for="guideVar-PACKAGE">Package:</label>
+                <input type="text" id="guideVar-PACKAGE" value="express">
+            </div>
+        </div>
+        
+        <div class="guide-text">
+# Package Installation
+
+{COMMAND} {PACKAGE}
+
+# With save flag
+{COMMAND} --save {PACKAGE}
+
+# With dev dependency
+{COMMAND} --save-dev {PACKAGE}
+        </div>
+        
+        <div class="guide-oneliners">
+            <h4>Quick Commands:</h4>
+            <div class="oneline-command" data-template="{COMMAND} {PACKAGE}">{COMMAND} {PACKAGE}</div>
+            <div class="oneline-command" data-template="{COMMAND} --save {PACKAGE}">{COMMAND} --save {PACKAGE}</div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize widgets
+        let dockerWidget, apiWidget;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize manual widgets
+            dockerWidget = CopyGuideWidget.initGuideWidget('docker-guide');
+            apiWidget = CopyGuideWidget.initGuideWidget('api-guide');
+            
+            // Auto-initialized widget is handled automatically
+            console.log('All widgets initialized!');
+        });
+        
+        // Action functions
+        function copyDockerGuide() {
+            if (dockerWidget) {
+                dockerWidget.copy().then(() => {
+                    alert('Docker guide copied to clipboard!');
+                }).catch(() => {
+                    alert('Failed to copy to clipboard');
+                });
+            }
+        }
+        
+        function downloadDockerGuide() {
+            if (dockerWidget) {
+                dockerWidget.download('docker-setup.md');
+            }
+        }
+        
+        function copyApiGuide() {
+            if (apiWidget) {
+                apiWidget.copy().then(() => {
+                    alert('API guide copied to clipboard!');
+                }).catch(() => {
+                    alert('Failed to copy to clipboard');
+                });
+            }
+        }
+        
+        function downloadApiGuide() {
+            if (apiWidget) {
+                apiWidget.download('api-integration.md');
+            }
+        }
+        
+        // Demo: Programmatically set variables
+        function setDockerDefaults() {
+            if (dockerWidget) {
+                dockerWidget.setVariable('IMAGE_NAME', 'my-awesome-app');
+                dockerWidget.setVariable('PORT', '8080');
+                dockerWidget.setVariable('ENV', 'development');
+            }
+        }
+        
+        // Add demo button
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoButton = document.createElement('button');
+            demoButton.textContent = '🎯 Set Docker Defaults';
+            demoButton.className = 'btn btn-secondary';
+            demoButton.style.marginTop = '10px';
+            demoButton.onclick = setDockerDefaults;
+            document.querySelector('#docker-guide .actions').appendChild(demoButton);
+        });
+    </script>
+</body>
+</html>

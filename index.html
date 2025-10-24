@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debug Test - Guide Widget Wrapper</title>
-    <script src="copy-guide-widget.js"></script>
+    <title>Copy Guide Widget - Example</title>
+    <script src="dist/copy-guide-widget.js"></script>
     <link rel="stylesheet" href="styles.css">
    
 </head>
 <body>
     <div class="container">
-        <h1>Debug Test - Guide Widget Wrapper</h1>
+        <h1>Copy Guide Widget - Example</h1>
         
         <div class="guide-widget" id="test-guide">
             <h3>Test Widget</h3>
@@ -75,8 +75,8 @@ curl -H "Authorization: Bearer {API_KEY}" {API_URL}/data
             console.log('DOM loaded, initializing widgets...');
             
             // Initialize widgets
-            widget1 = initGuideWidget('test-guide');
-            widget2 = initGuideWidget('test-guide-2');
+            widget1 = CopyGuideWidget.initGuideWidget('test-guide');
+            widget2 = CopyGuideWidget.initGuideWidget('test-guide-2');
             
         });
         

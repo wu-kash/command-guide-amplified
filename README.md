@@ -1,16 +1,30 @@
-# Guide Widget Wrapper Approach
+# Guide Widget
 
-This folder contains the wrapper function approach for creating reusable guide widgets that can be applied to any element with a specific structure.
+A lightweight, reusable guide widget for creating interactive templates with variable substitution and copy functionality.
 
-## Files
+## Installation
 
-- `index.html` - Usage example
-- `copy-guide-widget.js` - The main wrapper function
-- `README.md` - This documentation
+### NPM
+```bash
+npm install copy-guide-widget
+```
+
+### CDN
+```html
+<script src="https://unpkg.com/copy-guide-widget/dist/copy-guide-widget.min.js"></script>
+```
+
+### Manual
+Download the latest release and include the script:
+```html
+<script src="copy-guide-widget.js"></script>
+```
+
+**Note:** When using the browser script, the functions are available under the `CopyGuideWidget` global object.
 
 ## Quick Start
 
-### 1. Include the wrapper script
+### 1. Include the script
 ```html
 <script src="copy-guide-widget.js"></script>
 ```
@@ -29,7 +43,7 @@ This folder contains the wrapper function approach for creating reusable guide w
 
 ### 3. Initialize the widget
 ```javascript
-const widget = initGuideWidget('my-guide');
+const widget = CopyGuideWidget.initGuideWidget('my-guide');
 ```
 
 ## Key Features
@@ -39,6 +53,9 @@ const widget = initGuideWidget('my-guide');
 - **Auto-detection**: Finds variables and template automatically
 - **Utility methods**: Copy, download, get/set variables
 - **Lightweight**: No dependencies, minimal code
+- **TypeScript support**: Full type definitions included
+- **Multiple formats**: UMD, ES modules, CommonJS
+- **Auto-initialization**: Automatically finds and initializes widgets
 
 ## HTML Structure
 
@@ -100,13 +117,63 @@ The wrapper looks for templates in:
 - Elements with ID `guideText`
 - Elements with attribute `data-template`
 
+## Module Usage
+
+### ES Modules
+```javascript
+import { initGuideWidget, autoInitGuideWidgets } from 'copy-guide-widget';
+
+const widget = initGuideWidget('my-guide');
+```
+
+### CommonJS
+```javascript
+const { initGuideWidget, autoInitGuideWidgets } = require('copy-guide-widget');
+
+const widget = initGuideWidget('my-guide');
+```
+
+### TypeScript
+```typescript
+import { initGuideWidget, GuideWidgetInstance } from 'copy-guide-widget';
+
+const widget: GuideWidgetInstance | null = initGuideWidget('my-guide');
+```
+
+## API Reference
+
+### `initGuideWidget(containerId: string): GuideWidgetInstance | null`
+
+Initialize a guide widget on a container element.
+
+**Parameters:**
+- `containerId` - The ID of the container element
+
+**Returns:** GuideWidgetInstance or null if container not found
+
+### `autoInitGuideWidgets(): Record<string, GuideWidgetInstance | null>`
+
+Auto-initialize all elements with `data-guide-widget` attribute.
+
+**Returns:** Object containing all initialized widgets
+
+### GuideWidgetInstance Methods
+
+- `getText()` - Get current text content
+- `updateText()` - Manually update text with current variables
+- `getTemplate()` - Get original template
+- `getVariables()` - Get all variable values as object
+- `setVariable(name, value)` - Set a variable value
+- `copy()` - Copy current text to clipboard (returns Promise)
+- `download(filename?)` - Download current text as file
+
 ## Integration
 
-This approach is perfect for:
+This package is perfect for:
 - Documentation sites
 - Tutorial pages
 - Setup guides
 - API documentation
 - Any page needing multiple customizable guides
 
-The wrapper function is lightweight and can be easily integrated into existing projects without conflicts.
+The package is lightweight and can be easily integrated into existing projects without conflicts.
