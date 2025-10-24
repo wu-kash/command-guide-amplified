@@ -70,7 +70,6 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
   // If still no text element, we can still work with just cga-command elements
   if (!textElement) {
     const allCommandElements = container.querySelectorAll('.cga-command');
-    console.log('🔍 No cga-text found, but found cga-command elements:', allCommandElements.length);
     if (allCommandElements.length > 0) {
       // We can still initialize the widget even without cga-text elements
       textElement = allCommandElements[0]; // Use first command as fallback for compatibility
@@ -84,7 +83,6 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
   
   // Get all cga-text elements for updating
   const allTemplateElements = container.querySelectorAll('.cga-text:not(.cga-commands .cga-text)');
-  console.log('🔍 Found cga-text elements:', allTemplateElements.length);
   const originalTemplates: string[] = [];
   
   allTemplateElements.forEach(element => {
@@ -334,13 +332,11 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
  */
 export function autoInitCommandGuideAmplifiedWidgets(): Record<string, CommandGuideAmplifiedWidgetInstance | null> {
   const widgets = document.querySelectorAll('[data-cga-widget]');
-  console.log('🚀 Auto-initializing widgets:', widgets.length, 'found');
   const initializedWidgets: Record<string, CommandGuideAmplifiedWidgetInstance | null> = {};
   
   widgets.forEach(element => {
     const widgetId = element.id || `cga-widget-${crypto.randomUUID().slice(0, 8)}`;
     if (!element.id) element.id = widgetId;
-    console.log('🚀 Initializing widget:', widgetId);
     
     initializedWidgets[widgetId] = init(widgetId);
   });
