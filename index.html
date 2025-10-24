@@ -3,77 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copy Guide Widget - Example</title>
-    <script src="dist/copy-guide-widget.js"></script>
+    <title>Command Guide Widget - Example</title>
+    <script src="dist/command-guide-amplified.js"></script>
     <link rel="stylesheet" href="styles.css">
    
 </head>
 <body>
     <div class="container">
-        <h1>Copy Guide Widget - Example</h1>
+        <h1>Command Guide Amplified - Example</h1>
         
-        <div class="guide-widget" id="test-guide">
-            <h3>Test Widget</h3>
-            <div class="guide-variables">
-                <div class="guide-variable">
-                    <label for="guideVar-IMAGE_NAME">Image Name:</label>
-                    <input type="text" id="guideVar-IMAGE_NAME" value="my-service">
+        <section>
+            <div class="cga-widget" id="docker-guide">
+                <h4>Docker</h4>
+                <p>Make it easy to follow along with the guide. Copy & paste, no need to replace values each time.</p>
+                <div class="cga-variables">
+                    <div class="cga-variable">
+                        <label>Image Name:</label>
+                        <input type="text" class="cga-var-IMAGE_NAME" value="my-service">
+                    </div>
+                    <div class="cga-variable">
+                        <label>Port:</label>
+                        <input type="text" class="cga-var-PORT" value="8080">
+                    </div>
+                    <div class="cga-variable">
+                        <label>Environment:</label>
+                        <input type="text" class="cga-var-ENV" value="prod">
+                    </div>
                 </div>
-                <div class="guide-variable">
-                    <label for="guideVar-PORT">Port:</label>
-                    <input type="text" id="guideVar-PORT" value="8080">
-                </div>
-                <div class="guide-variable">
-                    <label for="guideVar-ENV">Environment:</label>
-                    <input type="text" id="guideVar-ENV" value="production">
-                </div>
-            </div>
-            <div class="guide-text">
-docker build -t {IMAGE_NAME} .
-docker run -p {PORT}:{PORT} {IMAGE_NAME}
-
-Environment: {ENV}
-            </div>
-            
-            <div class="guide-oneliners">
-                <h4>One-liners:</h4>
-                <div class="oneline-command" data-template="docker build -t {IMAGE_NAME} .">docker build -t {IMAGE_NAME} .</div>
-                <div class="oneline-command" data-template="docker run -p {PORT}:{PORT} {IMAGE_NAME}">docker run -p {PORT}:{PORT} {IMAGE_NAME}</div>
-                <div class="oneline-command" data-template="docker run -p {PORT}:{PORT} -e ENV={ENV} {IMAGE_NAME}">docker run -p {PORT}:{PORT} -e ENV={ENV} {IMAGE_NAME}</div>
-            </div>
-            <div class="guide-text">
-                docker build -t {IMAGE_NAME} .
-                docker run -p {PORT}:{PORT} {IMAGE_NAME}
                 
-                Environment: {ENV}
-                            </div>
-        </div>
+                <div class="cga-commands">
+                    <h4>Commands</h4>
+                    Docker build image:
+                    <div class="cga-command">docker build -t {IMAGE_NAME} .</div>
+
+                    Docker run and bind port:
+                    <div class="cga-command">docker run -p {PORT}:{PORT} {IMAGE_NAME}</div>
+
+                    Docker run with environment variable:
+                    <div class="cga-command">docker run -e ENV={ENV} {IMAGE_NAME}</div>
 
 
-        
-        <div class="guide-widget" id="test-guide-2">
-            <h3>Test Widget 2</h3>
-            <div class="guide-variables">
-                <div class="guide-variable">
-                    <label for="guideVar-API_URL">API URL:</label>
-                    <input type="text" id="guideVar-API_URL" value="https://api.example.com">
+                    Docker run with environment variable and bind port:
+                    <div class="cga-command">docker run -e ENV={ENV} -p {PORT}:{PORT} {IMAGE_NAME}</div>
                 </div>
-                <div class="guide-variable">
-                    <label for="guideVar-API_KEY">API Key:</label>
-                    <input type="text" id="guideVar-API_KEY" value="your-key">
+            </section>
+
+            <section>
+                <div class="cga-widget" data-cga-widget>
+                    <h4>Networking</h4>
+
+                    <p>Make the guide relateable to the user by show output similar adapted to user's case.</p>
+                    <div class="cga-variables">
+                        <div class="cga-variable">
+                            <label>Device IP:</label>
+                            <input type="text" class="cga-var-DEVICE_IP" value="192.168.64.20">
+                        </div>
+                    </div>
+
+
+                    SSH into the device:
+                    <div class="cga-command">ssh root@{DEVICE_IP}</div>
+
+                    Output:
+                    <div class="cga-text">ssh: connect to host {DEVICE_IP} port 22: Connection refused
+ssh: connect to host {DEVICE_IP} port 22: Connection refused
+...
+...
+ssh: connect to host {DEVICE_IP} port 22: Operation timed out</div>
+
+                    Ping the device:
+                    <div class="cga-command">ping {DEVICE_IP}</div>
+
+                    Output:
+                    <div class="cga-text">PING {DEVICE_IP} ({DEVICE_IP}): 56 data bytes
+Request timeout for icmp_seq 0
+Request timeout for icmp_seq 1
+Request timeout for icmp_seq 2              
+...
+ping: sendto: Host is down
+Request timeout for icmp_seq 35
+ping: sendto: Host is down
+Request timeout for icmp_seq 36
+...
+
+64 bytes from {DEVICE_IP}: icmp_seq=2 ttl=64 time=1016.290 ms
+64 bytes from {DEVICE_IP}: icmp_seq=3 ttl=64 time=11.144 ms
+64 bytes from {DEVICE_IP}: icmp_seq=4 ttl=64 time=6.337 ms
+64 bytes from {DEVICE_IP}: icmp_seq=5 ttl=64 time=3.255 ms</div>    
+
                 </div>
-            </div>
-            <div class="guide-text">
-curl -H "Authorization: Bearer {API_KEY}" {API_URL}/data
-            </div>
+            </section>
+
             
-            <div class="guide-oneliners">
-                <h4>One-liners:</h4>
-                <div class="oneline-command" data-template="curl -H 'Authorization: Bearer {API_KEY}' {API_URL}/data">curl -H "Authorization: Bearer {API_KEY}" {API_URL}/data</div>
-                <div class="oneline-command" data-template="curl -X GET {API_URL}/status">curl -X GET {API_URL}/status</div>
+        <section>
+            <div class="cga-widget" id="api-guide">
+                <h3>API</h3>
+                <div class="cga-variables">
+                    <div class="cga-variable">
+                        <label>API URL:</label>
+                        <input type="text" class="cga-var-API_URL" value="https://api.example.com">
+                    </div>
+                    <div class="cga-variable">
+                        <label>API Key:</label>
+                        <input type="text" class="cga-var-API_KEY" value="sk-123_f0rfiVE5iX">
+                    </div>
+                </div>
+                
+                <div class="cga-commands">
+                    <div class="cga-command">curl -H "Authorization: Bearer {API_KEY}" {API_URL}/data</div>
+                    <div class="cga-command">curl -X GET {API_URL}/status</div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section>
+            <div class="cga-widget" id="python-guide">
+                <h3>Python</h3>
+                <p>Code examples that work for everyones own case.</p>
+                <div class="cga-variables">
+                    <div class="cga-variable">
+                        <label>IP Address:</label>
+                        <input type="text" class="cga-var-IP_ADDRESS" value="192.168.64.20">
+                    </div>
+                    <div class="cga-variable">
+                        <label>User:</label>
+                        <input type="text" class="cga-var-USER" value="root">
+                    </div>
+                    <div class="cga-variable">
+                        <label>Password:</label>
+                        <input type="text" class="cga-var-PASSWORD" value="*******">
+                    </div>
+                </div>
+
+                <div class="cga-text">#!/usr/bin/python3
+import requests
+import json
+
+IPADDR = "{IP_ADDRESS}"
+USER = "{USER}"
+PW = "{PASSWORD}"
+
+url = 'https://{IP_ADDRESS}/ubus'
+
+# Create a session
+session = requests.Session()
+
+# JSON payload for login request
+login_payload = {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "call",
+    "params": [
+        "00000000000000000000000000000000", 
+        "session", 
+        "login", {
+            "username": {USER}, 
+            "password": {PASSWORD}
+        }
+    ]
+}
+
+# Send the login POST request
+response = session.post(url, json=login_payload, verify=False)
+
+# Parse the JSON response
+data = json.loads(response.text)
+
+# Extract the desired value (token)
+token = data['result'][1]['ubus_rpc_session']
+
+# Print the token
+print("Token:", token)
+
+# Close the session
+session.close()</div>
+            </div>
+        </section>
 
     
     <script>
@@ -83,8 +188,9 @@ curl -H "Authorization: Bearer {API_KEY}" {API_URL}/data
             console.log('DOM loaded, initializing widgets...');
             
             // Initialize widgets
-            widget1 = CopyGuideWidget.initGuideWidget('test-guide');
-            widget2 = CopyGuideWidget.initGuideWidget('test-guide-2');
+            widget1 = CommandGuideAmplifiedWidget.init('docker-guide');
+            widget1 = CommandGuideAmplifiedWidget.init('api-guide');
+            widget1 = CommandGuideAmplifiedWidget.init('python-guide');
             
         });
         

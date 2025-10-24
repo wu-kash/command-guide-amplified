@@ -4,12 +4,13 @@ import typescript from 'rollup-plugin-typescript2';
 export default [
   // UMD build for browsers
   {
-    input: 'src/copy-guide-widget.ts',
+    input: 'src/command-guide-amplified.ts',
     output: {
-      file: 'dist/copy-guide-widget.js',
+      file: 'dist/command-guide-amplified.js',
       format: 'umd',
-      name: 'CopyGuideWidget',
-      sourcemap: true
+      name: 'CommandGuideAmplifiedWidget',
+      sourcemap: true,
+      exports: 'named'
     },
     plugins: [
       typescript({
@@ -19,12 +20,13 @@ export default [
   },
   // UMD minified build
   {
-    input: 'src/copy-guide-widget.ts',
+    input: 'src/command-guide-amplified.ts',
     output: {
-      file: 'dist/copy-guide-widget.min.js',
+      file: 'dist/command-guide-amplified.min.js',
       format: 'umd',
-      name: 'CopyGuideWidget',
-      sourcemap: true
+      name: 'CommandGuideAmplifiedWidget',
+      sourcemap: true,
+      exports: 'named'
     },
     plugins: [
       typescript({
@@ -35,9 +37,9 @@ export default [
   },
   // ES module build
   {
-    input: 'src/copy-guide-widget.ts',
+    input: 'src/command-guide-amplified.ts',
     output: {
-      file: 'dist/copy-guide-widget.esm.js',
+      file: 'dist/command-guide-amplified.esm.js',
       format: 'es',
       sourcemap: true
     },
@@ -49,11 +51,12 @@ export default [
   },
   // CommonJS build
   {
-    input: 'src/copy-guide-widget.ts',
+    input: 'src/command-guide-amplified.ts',
     output: {
-      file: 'dist/copy-guide-widget.cjs.js',
+      file: 'dist/command-guide-amplified.cjs.js',
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
+      exports: 'named'
     },
     plugins: [
       typescript({

@@ -1,10 +1,10 @@
 {
-  "name": "copy-guide-widget",
-  "version": "1.0.2",
-  "description": "A lightweight, reusable guide widget for creating interactive templates with variable substitution",
-  "main": "dist/copy-guide-widget.js",
-  "module": "dist/copy-guide-widget.esm.js",
-  "types": "dist/copy-guide-widget.d.ts",
+  "name": "command-guide-amplified",
+  "version": "1.0.1",
+  "description": "A lightweight, reusable widget for creating interactive templates with variable substitution",
+  "main": "dist/command-guide-amplified.js",
+  "module": "dist/command-guide-amplified.esm.js",
+  "types": "dist/command-guide-amplified.d.ts",
   "files": [
     "dist",
     "README.md"

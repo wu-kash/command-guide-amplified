@@ -5,11 +5,9 @@ tsconfig.json
 rollup.config.js
 
 # Development files
-example.html
 index.html
 styles.css
-copy-guide-widget.js
-guide-widget-wrapper.js
+command-guide-amplified.js
 
 # Build tools
 .gitignore

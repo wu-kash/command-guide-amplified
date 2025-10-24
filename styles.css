@@ -11,7 +11,7 @@ body {
     margin: 0 auto;
 }
 
-.guide-widget {
+.cga-widget {
     background: white;
     border: 1px solid #e1e5e9;
     border-radius: 8px;
@@ -20,43 +20,45 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.guide-variables {
+.cga-variables {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
     padding: 15px;
-    background: #f8f9fa;
+    background: rgba(177, 220, 255, 0.892);
+    border: 1px solid #5173ed;
     border-radius: 6px;
 }
 
-.guide-variable {
+.cga-variable {
     display: flex;
     flex-direction: column;
 }
 
-.guide-variable label {
+.cga-variable label {
     font-weight: 600;
     color: #555;
     margin-bottom: 5px;
     font-size: 14px;
 }
 
-.guide-variable input {
+.cga-variable input {
     padding: 8px 12px;
     border: 2px solid #e1e5e9;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 14px;
     transition: border-color 0.2s;
+    font-family: 'JetBrains Mono', monospace;
 }
 
-.guide-variable input:focus {
+.cga-variable input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #84b4e8df;
 }
 
-.guide-text {
-    background: #f7fafc;
+.cga-text {
+    background: #e9ebedd7;
     border: 1px solid #e1e5e9;
     border-radius: 4px;
     padding: 15px;
@@ -64,27 +66,11 @@ body {
     font-size: 13px;
     line-height: 1.6;
     white-space: pre-wrap;
-    min-height: 100px;
-    margin: 15px 0;
 }
 
-.guide-oneliners {
-    margin-top: 20px;
-    padding: 15px;
-    background: #e8f4fd;
-    border-radius: 6px;
-    border-left: 4px solid #007bff;
-}
-
-.guide-oneliners h4 {
-    margin: 0 0 10px 0;
-    color: #007bff;
-    font-size: 14px;
-}
-
-.oneline-command {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
+.cga-command {
+    background: #c4eec9c6;
+    border: 1px solid #00ff22;
     border-radius: 4px;
     padding: 8px 12px;
     margin: 5px 0;
@@ -95,17 +81,18 @@ body {
     position: relative;
 }
 
-.oneline-command:hover {
-    background: #e9ecef;
-    border-color: #007bff;
+.cga-command:hover {
+    background: #3cf179;
+    border-color: #00ff22;
 }
 
-.oneline-command:active {
+.cga-command:active {
     background: #dee2e6;
 }
 
-.oneline-command::after {
-    content: "📋";
+.cga-command::after {
+    content: "[COPY]";
+    font-family: monospace;
     position: absolute;
     right: 8px;
     top: 50%;
@@ -114,6 +101,6 @@ body {
     transition: opacity 0.2s;
 }
 
-.oneline-command:hover::after {
+.cga-command:hover::after {
     opacity: 1;
 }
