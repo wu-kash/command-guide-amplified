@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Command Guide Widget - Example</title>
-    <!-- <script src="dist/command-guide-amplified.js"></script> -->
-    <script src="https://unpkg.com/command-guide-amplified/dist/command-guide-amplified.min.js"></script>
+    <script src="dist/command-guide-amplified.js"></script>
+    <!-- <script src="https://unpkg.com/command-guide-amplified/dist/command-guide-amplified.min.js"></script> -->
     <link rel="stylesheet" href="styles.css">
    
 </head>
@@ -28,7 +28,11 @@
                     </div>
                     <div class="cga-variable">
                         <label>Environment:</label>
-                        <input type="text" class="cga-var-ENV" value="prod">
+                        <select class="cga-var-ENV">
+                            <option value="DEV">DEV</option>
+                            <option value="STAGING">STAGING</option>
+                            <option value="PROD">PROD</option>
+                        </select>
                     </div>
                 </div>
                 
@@ -182,30 +186,43 @@ session.close()</div>
         </section>
 
         <div class="cga-widget" id="my-guide">
+            <h3>Agent</h3>
     
             <!-- Add your variables -->
-            <div class="cga-variable">
-                <label>Name:</label>
-                <input type="text" class="cga-var-NAME" value="James">
-            </div>
-            <div class="cga-variable">
-                <label>Surname:</label>
-                <input type="text" class="cga-var-SURNAME" value="Bond">
+            <div class="cga-variables">
+                <div class="cga-variable">
+                    <label>Name:</label>
+                    <input type="text" class="cga-var-NAME" value="James">
+                </div>
+                <div class="cga-variable">
+                    <label>Surname:</label>
+                    <input type="text" class="cga-var-SURNAME" value="Bond">
+                </div>
+                <div class="cga-variable">
+                    <label>ID:</label>
+                    <select class="cga-var-ID">
+                        <option value="007">007</option>
+                        <option value="008">008</option>
+                        <option value="009">009</option>
+                    </select>
+                </div>
             </div>
         
             <!-- Add your commands or text with placeholders -->
-            A single line of text that can be copied:
-            <div class="cga-command">The name's {SURNAME}. {NAME} {SURNAME}.</div>
         
             Lines of text that could be some output, or longer code snippets..
             <div class="cga-text">#!/usr/bin/python3
 name = "{NAME}"
 surname = "{SURNAME}"
+id = "{ID}"
 
-print(f"The name's {surname}. {name} {surname}")</div>
+print(f"The name's {surname}. {name} {surname} (ID: {id})")</div>
         
             Output:
-            <div class="cga-text">The name's {SURNAME}. {NAME} {SURNAME}</div>
+            <div class="cga-text">The name's {SURNAME}. {NAME} {SURNAME} (ID: {ID})</div>
+
+            Or a line of text that can be copied:
+            <div class="cga-command">The name's {SURNAME}. {NAME} {SURNAME} (ID: {ID})</div>
         </div>
 
     <script>

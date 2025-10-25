@@ -57,6 +57,22 @@ body {
     border-color: #84b4e8df;
 }
 
+.cga-variable select {
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+    background: white;
+    cursor: pointer;
+}
+
+.cga-variable select:focus {
+    outline: none;
+    border-color: #84b4e8df;
+}
+
 .cga-text {
     background: #e9ebedd7;
     border: 1px solid #e1e5e9;

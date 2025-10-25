@@ -1,6 +1,6 @@
 {
   "name": "command-guide-amplified",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A lightweight, reusable widget for creating interactive templates with variable substitution",
   "main": "dist/command-guide-amplified.js",
   "module": "dist/command-guide-amplified.esm.js",

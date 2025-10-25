@@ -100,8 +100,8 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
   // Keep the first one for backward compatibility
   const originalTemplate = originalTemplates[0] || '';
   
-  // Find all variable inputs
-  const variableInputs = container.querySelectorAll('input[class*="cga-var-"]') as NodeListOf<HTMLInputElement>;
+  // Find all variable inputs (both input and select elements)
+  const variableInputs = container.querySelectorAll('input[class*="cga-var-"], select[class*="cga-var-"]') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
   
   // Function to update the text with current variable values
   function updateText(): void {
@@ -118,7 +118,7 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
         if (varClass) {
           variableName = varClass.replace('cga-var-', '');
         } else {
-          variableName = input.name || input.placeholder || 'UNKNOWN';
+          variableName = input.name || (input as HTMLInputElement).placeholder || 'UNKNOWN';
         }
         
         const value = input.value || `{${variableName}}`;
@@ -153,7 +153,7 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
         if (varClass) {
           variableName = varClass.replace('cga-var-', '');
         } else {
-          variableName = input.name || input.placeholder || 'UNKNOWN';
+          variableName = input.name || (input as HTMLInputElement).placeholder || 'UNKNOWN';
         }
         
         const value = input.value || `{${variableName}}`;
@@ -247,9 +247,13 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
   
   // Add event listeners to all variable inputs
   variableInputs.forEach((input) => {
-    input.addEventListener('input', updateText);
-    input.addEventListener('change', updateText);
-    input.addEventListener('keyup', updateText);
+    if (input.tagName === 'INPUT') {
+      input.addEventListener('input', updateText);
+      input.addEventListener('change', updateText);
+      input.addEventListener('keyup', updateText);
+    } else if (input.tagName === 'SELECT') {
+      input.addEventListener('change', updateText);
+    }
   });
   
   // Store original text for cga-command elements before any updates
@@ -280,7 +284,7 @@ export function init(containerId: string): CommandGuideAmplifiedWidgetInstance |
         if (varClass) {
           variableName = varClass.replace('cga-var-', '');
         } else {
-          variableName = input.name || input.placeholder || 'UNKNOWN';
+          variableName = input.name || (input as HTMLInputElement).placeholder || 'UNKNOWN';
         }
         variables[variableName] = input.value;
       });
