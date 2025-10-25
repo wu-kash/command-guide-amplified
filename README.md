@@ -2,6 +2,8 @@
 
 A lightweight, reusable widget for creating interactive templates with variable substitution and copy functionality.
 
+View live example: https://wu-kash.github.io/command-guide-amplified/
+
 ## Installation
 
 ### NPM
@@ -28,7 +30,10 @@ Download the latest release and include the script:
 <script src="command-guide-amplified.js"></script>
 ```
 
-### 2. Create your HTML structure
+### 2. Create your HTML structure. 
+
+Classes with `cga-var-{NAME_ME}` define the variables that will replace placholders `{NAME_ME}` within your `cga-text` and `cga-command` elements.
+
 ```html
 <div class="cga-widget" id="my-guide">
     
@@ -41,23 +46,32 @@ Download the latest release and include the script:
         <label>Surname:</label>
         <input type="text" class="cga-var-SURNAME" value="Bond">
     </div>
+    <div class="cga-variable">
+        <label>ID:</label>
+        <select class="cga-var-ID">
+            <option value="007">007</option>
+            <option value="008">008</option>
+            <option value="009">009</option>
+        </select>
+    </div>
 
     ...
     <!-- Add your commands or text with placeholders -->
-    A single line of text that can be copied:
-    <div class="cga-command">The name's {SURNAME}. {NAME} {SURNAME}.</div>
-
     Lines of text that could be some output, or longer code snippets..
     <div class="cga-text">
         #!/usr/bin/python3
         name = "{NAME}"
         surname = "{SURNAME}"
+        id = "{ID}"
 
-        print(f"The name's {surname}. {name} {surname}")
+        print(f"The name's {surname}. {name} {surname} (ID: {id})")
     </div>
 
     Output:
-    <div class="cga-text">The name's {SURNAME}. {NAME} {SURNAME}</div>
+    <div class="cga-text">The name's {SURNAME}. {NAME} {SURNAME} (ID: {ID})</div>
+
+    Or a line of text that can be copied:
+    <div class="cga-command">The name's {SURNAME}. {NAME} {SURNAME} (ID: {ID})</div>
 
 </div>
 ```
