@@ -83,6 +83,8 @@ Sections automatically initialize if they contain data-cga-widget attribute:
 ```
 
 ### 4. Result
+
+Add some styling (`styles.css`) to your elements and make some interactive docs:
 ![image description](img/example.png)
 
 See `index.html` for more examples.
